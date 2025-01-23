@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
     {
         GameTimer();
         Collectables();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void GameTimer()
