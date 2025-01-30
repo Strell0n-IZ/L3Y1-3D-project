@@ -12,7 +12,7 @@ public class CarController : MonoBehaviour
     [Range(0,20f)] public float reverseAccel = 4f;
     [Range(0,100f)] public float maxSpeed = 50f;
     [Range(0,360f)] public float turnStrength = 180f;
-    [Range(0,80f)] public float jumpHeight = 30f;
+    [Range(0,80f)] public float jumpHeight = 180f;
     [Range(0,20f)] public float gravityForce = 10f;
     [Range(0,5f)] public float dragOnGround = 3f;
     private float speedInput, turnInput;
@@ -35,6 +35,10 @@ public class CarController : MonoBehaviour
     private float emissionRate;
     private GameObject particleHolder;
 
+    [Header("Audio")]
+    public AudioSource engineSound;
+    public AudioSource hornSound;
+
 
     void Start()
     {
@@ -53,6 +57,13 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        //Audio Handling
+        engineSound.pitch = 1 + (speedInput / 10000);
+
+        if (Input.GetKeyDown("h"))
+        {
+            hornSound.Play();
+        }
 
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0) 
